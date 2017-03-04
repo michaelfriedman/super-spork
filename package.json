@@ -6,11 +6,30 @@
     "react-scripts": "0.9.3"
   },
   "dependencies": {
+    "axios": "^0.15.3",
+    "bcrypt-as-promised": "^1.1.0",
+    "body-parser": "^1.17.0",
+    "boom": "^4.2.0",
+    "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.0",
+    "humps": "^2.0.0",
+    "jsonwebtoken": "^7.3.0",
+    "knex": "^0.12.7",
+    "morgan": "^1.8.1",
+    "pg": "^6.1.2",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-dropzone": "^3.11.0",
+    "react-router": "^3.0.2",
+    "superagent": "^3.5.0"
   },
+  "proxy": "http://localhost:3001",
   "scripts": {
-    "start": "react-scripts start",
+    "start-prod": "env PORT=3000 nodemon server/bin/www",
+    "knex": "knex",
+    "start": "react-scripts start & nodemon server/bin/www",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
