@@ -5,6 +5,12 @@
   "devDependencies": {
     "react-scripts": "0.9.3"
   },
+  "engines": {
+    "node": "7.6.0"
+  },
+  "contributors": [
+    "Michael Friedman <contact@michaeldavidfriedman.com>"
+  ],
   "dependencies": {
     "axios": "^0.15.3",
     "bcrypt-as-promised": "^1.1.0",
