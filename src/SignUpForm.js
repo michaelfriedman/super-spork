@@ -92,9 +92,8 @@ class SignUpForm extends Component {
       .then(response => {
         console.log(response)
         if (response.status === 200) {
-          // browserHistory.push('/profile')
+          browserHistory.push('/profile')
           console.log('status 200')
-          // location.reload()
           this.props.updateLoggedIn(true)
         }
       })
@@ -125,7 +124,7 @@ class SignUpForm extends Component {
           <div className='col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4'>
             <div className='panel panel-default'>
               <div className='panel-heading'>
-                <h3 className='panel-title'>Please sign up for Eat Genius <small>It's free!</small></h3>
+                <h3 className='panel-title'>Please sign up for Super Spork <small>It's free!</small></h3>
               </div>
               <div className='panel-body'>
                 <form onSubmit={this.handleSubmit} role='form'>

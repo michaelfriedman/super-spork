@@ -3,6 +3,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import './App.css'
 import Navbar from './Navbar'
 import Landing from './Landing'
+import Profile from './Profile'
 import SignUpForm from './SignUpForm'
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
         <Route path='/' component={Navbar}>
           <IndexRoute component={Landing} />
           <Route path='signup' component={SignUpForm} />
+          <Route path='profile' component={Profile} />
         </Route>
       </Router>
     )
