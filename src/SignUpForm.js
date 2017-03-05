@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router'
 import axios from 'axios'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
+import { FormGroup, FormControl, ControlLabel, HelpBlock, Form, Button, validationState } from 'react-bootstrap'
 
 const CLOUDINARY_UPLOAD_PRESET = 'torqfs7z'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk5dqve4y/upload'
@@ -114,6 +115,41 @@ class SignUpForm extends Component {
     const isDisabled = Object.keys(errors).some(x => errors[x])
     return !isDisabled
   }
+  getValidationState () {
+    if (this.state.first_name.length === 0) return
+    const first_nameLength = this.state.first_name.length
+    const isString = typeof this.state.first_name
+    if (first_nameLength >= 1) return 'success'
+    else if (isString !== String) return 'warning'
+    else if (this.state.first_name === undefined) return
+  }
+  getLastNameValidationState () {
+    if (this.state.last_name.length === 0) return
+    if (this.state.last_name.length >= 1) return 'success'
+    else if (this.state.first_name === undefined) return
+  }
+  getPasswordValidationState () {
+    if (this.state.password.length === 0) return ''
+    if (this.state.password.length >= 8 && this.state.password.length <= 64) {
+      return 'success'
+    }
+    if (this.state.password.length < 8) return 'error'
+    if (this.state.password.length > 64) return 'error'
+  }
+  getPasswordConfirmValidationState () {
+    if (this.state.password.length === 0) return
+    if (this.state.password === this.state.password_confirm) return 'success'
+    else {
+      return 'error'
+    }
+  }
+  getEmailValidationState () {
+    if (this.state.email.length === 0) return
+    if (this.state.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) return 'success'
+    else {
+      return 'error'
+    }
+  }
 
   render () {
     const errors = validate(this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.password_confirm)
@@ -127,33 +163,41 @@ class SignUpForm extends Component {
                 <h3 className='panel-title'>Please sign up for Super Spork <small>It's free!</small></h3>
               </div>
               <div className='panel-body'>
-                <form onSubmit={this.handleSubmit} role='form'>
+                <Form onSubmit={this.handleSubmit} role='form'>
                   <div className='row'>
                     <div className='col-xs-6 col-sm-6 col-md-6'>
-                      <div className='form-group'>
-                        <input className={errors.first_name ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='First Name' value={this.state.first_name} onChange={this.handleChange} name='first_name' />
-                      </div>
+                      <FormGroup validationState={this.getValidationState()} className='form-group'>
+                        <ControlLabel>First Name:</ControlLabel>
+                        <FormControl className={errors.first_name ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='First Name' value={this.state.first_name} onChange={this.handleChange} name='first_name' />
+                        <FormControl.Feedback />
+                      </FormGroup>
                     </div>
                     <div className='col-xs-6 col-sm-6 col-md-6'>
-                      <div className='form-group'>
-                        <input className={errors.last_name ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='Last Name' value={this.state.last_name} onChange={this.handleChange} name='last_name' />
-                      </div>
+                      <FormGroup validationState={this.getLastNameValidationState()} className='form-group'>
+                        <ControlLabel>Last Name:</ControlLabel>
+                        <FormControl className={errors.last_name ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='Last Name' value={this.state.last_name} onChange={this.handleChange} name='last_name' />
+                        <FormControl.Feedback />
+                      </FormGroup>
                     </div>
                   </div>
-                  <div className='form-group'>
-                    <input className={errors.email ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='Enter email' value={this.state.email} onChange={this.handleChange} name='email' />
-                  </div>
+                  <FormGroup validationState={this.getEmailValidationState()} className='form-group'>
+                    <ControlLabel>Email:</ControlLabel>
+                    <FormControl className={errors.email ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='Enter email' value={this.state.email} onChange={this.handleChange} name='email' />
+                    <FormControl.Feedback />
+                  </FormGroup>
                   <div className='row'>
                     <div className='col-xs-6 col-sm-6 col-md-6'>
-                      <div className='form-group'>
-                        <input className={errors.password ? 'error form-control input-sm' : 'form-control input-sm'} type='password' placeholder='Enter password' value={this.state.password} onChange={this.handleChange} name='password' />
-
-                      </div>
+                      <FormGroup validationState={this.getPasswordValidationState()} className='form-group'>
+                        <ControlLabel>Password:</ControlLabel>
+                        <FormControl className={errors.password ? 'error form-control input-sm' : 'form-control input-sm'} type='password' placeholder='Enter password' value={this.state.password} onChange={this.handleChange} name='password' />
+                      </FormGroup>
                     </div>
                     <div className='col-xs-6 col-sm-6 col-md-6'>
-                      <div className='form-group'>
-                        <input className={errors.password_confirm ? 'error form-control input-sm' : 'form-control input-sm'} type='password' placeholder='Confirm Password' value={this.state.password_confirm} onChange={this.handleChange} name='password_confirm' />
-                      </div>
+                      <ControlLabel>Confirm:</ControlLabel>
+                      <FormGroup validationState={this.getPasswordConfirmValidationState()} className='form-group'>
+                        <FormControl className={errors.password_confirm ? 'error form-control input-sm' : 'form-control input-sm'} type='password' placeholder='Confirm Password' value={this.state.password_confirm} onChange={this.handleChange} name='password_confirm' />
+                        <FormControl.Feedback />
+                      </FormGroup>
                     </div>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -181,8 +225,9 @@ class SignUpForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <input disabled={isDisabled} type='submit' value='Register' className='btn btn-info btn-block' />
-                </form>
+                  <Button disabled={isDisabled} type='submit' value='Register' className='btn btn-info btn-block'>Register</Button>
+                </Form>
+
               </div>
             </div>
           </div>

@@ -5,12 +5,18 @@
   "devDependencies": {
     "react-scripts": "0.9.3"
   },
+  "engines": {
+    "node": "7.6.0"
+  },
+  "contributors": [
+    "Michael Friedman <contact@michaeldavidfriedman.com>"
+  ],
   "dependencies": {
     "axios": "^0.15.3",
     "bcrypt-as-promised": "^1.1.0",
     "body-parser": "^1.17.0",
     "boom": "^4.2.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "4.0.0-alpha.6",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.0",
@@ -20,9 +26,14 @@
     "morgan": "^1.8.1",
     "pg": "^6.1.2",
     "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.11.0",
+    "react-modal": "^1.7.1",
     "react-router": "^3.0.2",
+    "react-router-bootstrap": "^0.23.1",
     "superagent": "^3.5.0"
   },
   "proxy": "http://localhost:3001",
