@@ -4,6 +4,7 @@ import axios from 'axios'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 import { FormGroup, FormControl, ControlLabel, HelpBlock, Form, Button, validationState } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const CLOUDINARY_UPLOAD_PRESET = 'torqfs7z'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk5dqve4y/upload'
@@ -160,7 +161,7 @@ class SignUpForm extends Component {
           <div className='col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4'>
             <div className='panel panel-default'>
               <div className='panel-heading'>
-                <h3 className='panel-title'>Please sign up for Super Spork <small>It's free!</small></h3>
+                <h3 className='panel-title'>Sign up for Super Spork!</h3> <LinkContainer to='login'><Button style={{ marginTop: '1%' }} bsSize='xsmall' className='btn-success'>Login Here</Button></LinkContainer>
               </div>
               <div className='panel-body'>
                 <Form onSubmit={this.handleSubmit} role='form'>
@@ -227,7 +228,6 @@ class SignUpForm extends Component {
                   </div>
                   <Button disabled={isDisabled} type='submit' value='Register' className='btn btn-info btn-block'>Register</Button>
                 </Form>
-
               </div>
             </div>
           </div>
