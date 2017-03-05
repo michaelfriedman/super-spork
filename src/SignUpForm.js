@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 import axios from 'axios'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
-import { FormGroup, FormControl, ControlLabel, HelpBlock, Form, Button, validationState } from 'react-bootstrap'
+import { Col, Row, FormGroup, FormControl, ControlLabel, HelpBlock, Form, Button, validationState } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 const CLOUDINARY_UPLOAD_PRESET = 'torqfs7z'
@@ -158,7 +158,7 @@ class SignUpForm extends Component {
     return (
       <div className='container'>
         <div className='row centered-form'>
-          <div className='col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4'>
+          <Col xs={12} sm={8} md={4} smOffset={2} mdOffset={4}>
             <div className='panel panel-default'>
               <div className='panel-heading'>
                 <h3 className='panel-title'>Sign up for Super Spork!</h3> <LinkContainer to='login'><Button style={{ marginTop: '1%' }} bsSize='xsmall' className='btn-success'>Login Here</Button></LinkContainer>
@@ -166,41 +166,41 @@ class SignUpForm extends Component {
               <div className='panel-body'>
                 <Form onSubmit={this.handleSubmit} role='form'>
                   <div className='row'>
-                    <div className='col-xs-6 col-sm-6 col-md-6'>
+                    <Col xs={6} md={6}>
                       <FormGroup validationState={this.getValidationState()} className='form-group'>
                         <ControlLabel>First Name:</ControlLabel>
                         <FormControl className={errors.first_name ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='First Name' value={this.state.first_name} onChange={this.handleChange} name='first_name' />
                         <FormControl.Feedback />
                       </FormGroup>
-                    </div>
-                    <div className='col-xs-6 col-sm-6 col-md-6'>
+                    </Col>
+                    <Col xs={6} sm={6} md={6}>
                       <FormGroup validationState={this.getLastNameValidationState()} className='form-group'>
                         <ControlLabel>Last Name:</ControlLabel>
                         <FormControl className={errors.last_name ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='Last Name' value={this.state.last_name} onChange={this.handleChange} name='last_name' />
                         <FormControl.Feedback />
                       </FormGroup>
-                    </div>
+                    </Col>
                   </div>
                   <FormGroup validationState={this.getEmailValidationState()} className='form-group'>
                     <ControlLabel>Email:</ControlLabel>
                     <FormControl className={errors.email ? 'error form-control input-sm' : 'form-control input-sm'} type='text' placeholder='Enter email' value={this.state.email} onChange={this.handleChange} name='email' />
                     <FormControl.Feedback />
                   </FormGroup>
-                  <div className='row'>
-                    <div className='col-xs-6 col-sm-6 col-md-6'>
+                  <Row>
+                    <Col xs={6} sm={6} md={6}>
                       <FormGroup validationState={this.getPasswordValidationState()} className='form-group'>
                         <ControlLabel>Password:</ControlLabel>
                         <FormControl className={errors.password ? 'error form-control input-sm' : 'form-control input-sm'} type='password' placeholder='Enter password' value={this.state.password} onChange={this.handleChange} name='password' />
                       </FormGroup>
-                    </div>
-                    <div className='col-xs-6 col-sm-6 col-md-6'>
+                    </Col>
+                    <Col xs={6} md={6}>
                       <ControlLabel>Confirm:</ControlLabel>
                       <FormGroup validationState={this.getPasswordConfirmValidationState()} className='form-group'>
                         <FormControl className={errors.password_confirm ? 'error form-control input-sm' : 'form-control input-sm'} type='password' placeholder='Confirm Password' value={this.state.password_confirm} onChange={this.handleChange} name='password_confirm' />
                         <FormControl.Feedback />
                       </FormGroup>
-                    </div>
-                  </div>
+                    </Col>
+                  </Row>
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
 
                     <div>
@@ -230,7 +230,7 @@ class SignUpForm extends Component {
                 </Form>
               </div>
             </div>
-          </div>
+          </Col>
         </div>
       </div>
     )
