@@ -45,9 +45,11 @@ class NavigationBar extends Component {
       })
   }
 
-  updateLoggedIn (newLoggedIn) {
+  updateLoggedIn (newLoggedIn, firstame) {
+    console.log('updated')
     this.setState({
-      isLoggedIn: newLoggedIn
+      isLoggedIn: newLoggedIn,
+      name: this.state.first_name
     })
   }
 
@@ -69,7 +71,7 @@ class NavigationBar extends Component {
   render () {
     return (
       <div>
-        <Navbar inverse collapseOnSelect>
+        <Navbar fixedTop inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
               <Link to='/'>Super Fork</Link>
@@ -78,13 +80,17 @@ class NavigationBar extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavDropdown eventKey={3} title={this.state.name} id='basic-nav-dropdown'>
-                <LinkContainer to={{ pathname: '/profile' }}><MenuItem eventKey={3.1}>Profile</MenuItem></LinkContainer>
-                <MenuItem eventKey={3.2}>Another action</MenuItem>
-                <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                <MenuItem divider />
-                <MenuItem eventKey={3.3}>Separated link</MenuItem>
-              </NavDropdown>
+              {
+                this.state.isLoggedIn
+                ? <NavDropdown eventKey={3} title='Menu' id='basic-nav-dropdown'>
+                  <LinkContainer to={{ pathname: '/profile' }}><MenuItem eventKey={3.1}>Profile</MenuItem></LinkContainer>
+                  <MenuItem eventKey={3.2}>Another action</MenuItem>
+                  <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                  <MenuItem divider />
+                  <MenuItem eventKey={3.3}>Separated link</MenuItem>
+                </NavDropdown>
+                : null
+              }
             </Nav>
             <Nav pullRight>
               {
