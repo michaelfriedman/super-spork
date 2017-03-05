@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory, Link } from 'react-router'
 import axios from 'axios'
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
+import { Col, Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 
 function validate (email, password) {
   // true means invalid
@@ -141,7 +141,7 @@ class LoginForm extends Component {
       <div className='container'>
         <div className='container'>
           <div className='row'>
-            <div className='col-md-offset-5 col-md-3'>
+            <Col xs={12} sm={8} md={4} smOffset={2} mdOffset={4} bsStyle={{display: 'flex', justifyContent: 'center'}}>
               <Form onSubmit={this.handleSubmit} className='form-login'>
                 <h4>Welcome back.</h4>
                 <FormGroup validationState={this.getEmailValidationState()}>
@@ -160,7 +160,7 @@ class LoginForm extends Component {
 
               </Form>
 
-            </div>
+            </Col>
           </div>
         </div>
 
